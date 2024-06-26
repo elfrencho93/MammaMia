@@ -8,14 +8,17 @@ namespace MammaMia.Controllers;
 
 [Route("[controller]")]
 public class PizzaController : ControllerBase{
-    public PizzaController(){}
+    private PizzaService _service;
+    public PizzaController(PizzaService service){
+        _service = service;
+    }
 
     [HttpGet]
-    public ActionResult<List<Pizza>> GetPizzas() => Ok(PizzaService.GetPizzas());
+    public ActionResult<List<Pizza>> GetPizzas() => Ok(_service.GetAll());
 
     [HttpGet("{id}")]
     public ActionResult<Pizza> GetPizza(int id){
-        var pizza = PizzaService.GetPizza(id);
+        var pizza = _service.GetById(id);
 
         if(pizza == null) return NotFound();
 
@@ -24,33 +27,29 @@ public class PizzaController : ControllerBase{
 
     [HttpPost]
     public IActionResult CreatePizza(Pizza pizza){
-        PizzaService.AddPizza(pizza);
+        _service.Create(pizza);
         return CreatedAtAction(nameof(GetPizza), new{id = pizza.Id}, pizza);
     }
 
-    [HttpPut("{id}")]
-    public IActionResult UpdatePizza(int id, Pizza pizza){
-        if(id != pizza.Id) return BadRequest();
+    [HttpPut("{id}/addtopping")]
+    public IActionResult AddTopping(int id, int toppingId){
+        var pizza = _service.GetById(id);
+        if(pizza is null) return NotFound();
 
-        var existingPizza = PizzaService.GetPizza(id);
-
-        if (existingPizza is null) return NotFound();
-
-        PizzaService.UpdatePizza(pizza);
-
+        _service.AddTopping(id, toppingId);
         return NoContent();
-
-
     }
 
+    //TODO UPDATE SAUCE
+    
     [HttpDelete("{id}")]
         public IActionResult RemovePizza(int id){
 
-        var pizza = PizzaService.GetPizza(id);
+        var pizza = _service.GetById(id);
 
         if (pizza is null) return NotFound();
 
-        PizzaService.RemovePizza(id);
+        _service.DeleteById(id);
 
         return NoContent();
     }
