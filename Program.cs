@@ -16,10 +16,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapGet("/", () => @"MammaMia Pizza Management API. Navega a /swagger para testear con la UI de Swagger");
 
 app.Run();
