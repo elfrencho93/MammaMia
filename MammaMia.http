@@ -1,4 +1,4 @@
-@MammaMia_HostAddress = http://localhost:5013
+@MammaMia_HostAddress = http://localhost:5015
 
 GET {{MammaMia_HostAddress}}/pizza
 Accept: application/json
@@ -20,18 +20,18 @@ Content-Type: application/json
 
 ###
 
-PUT {{MammaMia_HostAddress}}/pizza/1
+PUT  {{MammaMia_HostAddress}}/pizza/1
 Content-Type: application/json
 
 {
-    "id": 1,
-    "name": "Calzone",
-    "isGlutenFree": false
+  "id":1,
+  "name": "Calzone",
+  "isGlutenFree": false
 }
 
 ###
 
-DELETE {{MammaMia_HostAddress}}/pizza/1
+DELETE   {{MammaMia_HostAddress}}/pizza/1
 Content-Type: application/json
 
 ###

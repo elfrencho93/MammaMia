@@ -2,16 +2,15 @@ using MammaMia.Models;
 
 namespace MammaMia.Services;
 
-public class PizzaService{
-    public PizzaService(){
+public class PizzaService : IFoodService<Pizza>
+{
+    public IEnumerable<Pizza> GetAll()
+    {
         throw new NotImplementedException();
     }
 
-    public IEnumerable<Pizza> GetAll(){
-        throw new NotImplementedException();
-    }
-
-    public Pizza? GetById(int id){
+    public Pizza? GetById(int id)
+    {
         throw new NotImplementedException();
     }
 
@@ -19,7 +18,7 @@ public class PizzaService{
         throw new NotImplementedException();
     }
 
-    public void AddTopping(int PizzaId, int ToppingId){
+    public void AddToppping(int PizzaId, int ToppingId){
         throw new NotImplementedException();
     }
 

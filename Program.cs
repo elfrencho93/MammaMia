@@ -26,6 +26,7 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.MapGet("/", () => @"MammaMia Pizza Management API. Navega a /swagger para testear con la UI de Swagger");
+app.MapGet("/", () => @"MammaMía Pizza management API. Navega a /swagger para testear con la UI de Swagger");
 
 app.Run();
+
